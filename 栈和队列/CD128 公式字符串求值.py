@@ -1,11 +1,3 @@
-# -*- encoding: utf-8 -*-
-'''
-Author: leungloh
-Email: liangquanle@360.cn
-version: @v1.0
-Date: 2021/08/24 16:38:58
-'''
-
 """
 描述
 给定一个字符串str，str表示一个公式，公式里可以有整数，加减乘除和左右括号，返回公式的计算结果（注意：题目中所有运算都是整型运算，向下取整,且保证数据合法，不会出现除0等情况）。
@@ -26,42 +18,47 @@ Date: 2021/08/24 16:38:58
 
 
 class Solution:
-    def calculate(self, n, arr):
-        s = list()
-        i = 0
-        while i < n:
-            value1 = ""
-            value2 = ""
-            while i < n and arr[i].isdigit():
-                value1 += arr[i]
-                i += 1
-            if i == n - 1:
-                break
-
-            operator = arr[i]
-            i += 1
-            if arr[i] == "(":
-                value2, index = self.calculate(n - i - 1, arr[i + 1:])
-                i += index + 1
+    def calculate(self, exp, index):
+        deque = []
+        pre = 0
+        while index < len(exp) and exp[index] != ")":
+            if exp[index].isdigit():
+                pre = pre * 10 + int(exp[index])
+                index += 1
+            elif exp[index] == "(":
+                res = self.calculate(exp, index + 1)
+                pre = res[0]
+                index = res[1] + 1
             else:
-                while i < n and arr[i].isdigit():
-                    value2 += arr[i]
-                    i += 1
+                self.getmd(deque, pre)
+                deque.append(exp[index])
+                pre = 0
+                index += 1
+        self.getmd(deque, pre)
+        return [self.getsum(deque), index]
 
-            if operator == '+':
-                s.append(int(value1) + int(value2))
-            elif operator == "-":
-                s.append(int(value1) + int(value2))
-            elif operator == "*":
-                s.append(int(value1) * int(value2))
-            elif operator == "/":
-                s.append(int(value1) / int(value2))
-            elif operator == "(":
-                break
-        return sum(s), i
+    def getmd(self, deque, pre):
+        if deque and (deque[-1] == "*" or deque[-1] == "/"):
+            op = deque.pop()
+            v = deque.pop()
+            pre = v * pre if op == "*" else v / pre
+        deque.append(int(pre))
+
+    def getsum(self, deque):
+        res = 0
+        isadd = True
+        while deque:
+            cur = deque.pop(0)
+            if cur == "+":
+                isadd = True
+            elif cur == "-":
+                isadd = False
+            else:
+                res += cur if isadd else -cur
+        return res
 
 
 if __name__ == '__main__':
-    s = input()
+    exp = input()
     test = Solution()
-    print(test.calculate(len(s), s))
+    print(test.calculate(exp, 0)[0])

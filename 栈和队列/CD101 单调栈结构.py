@@ -1,11 +1,3 @@
-# -*- encoding: utf-8 -*-
-'''
-Author: leungloh
-Email: liangquanle@360.cn
-version: @v1.0
-Date: 2021/08/24 11:48:42
-'''
-
 """
 描述
 给定一个不含有重复值的数组 arr，找到每一个 i 位置左边和右边离 i 位置最近且值比 arr[i] 小的位置。返回所有位置相应的信息。

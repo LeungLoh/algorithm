@@ -1,11 +1,3 @@
-# -*- encoding: utf-8 -*-
-'''
-Author: leungloh
-Email: liangquanle@360.cn
-version: @v1.0
-Date: 2021/08/23 15:39:49
-'''
-
 """
 描述
 用两个栈实现队列，支持队列的基本操作。

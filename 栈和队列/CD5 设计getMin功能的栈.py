@@ -1,12 +1,3 @@
-# -*- encoding: utf-8 -*-
-'''
-Author: leungloh
-Email: liangquanle@360.cn
-version: @v1.0
-Date: 2021/08/23 15:19:51
-'''
-
-
 """
 描述
 实现一个特殊功能的栈，在实现栈的基本功能的基础上，再实现返回栈中最小元素的操作。

@@ -1,11 +1,3 @@
-# -*- encoding: utf-8 -*-
-'''
-Author: leungloh
-Email: liangquanle@360.cn
-version: @v1.0
-Date: 2021/08/23 16:38:28
-'''
-
 """
 描述
 实现一种猫狗队列的结构，要求如下：
