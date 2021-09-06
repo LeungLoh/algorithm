@@ -68,3 +68,4 @@ if __name__ == '__main__':
         p = node
     test = Solution()
     test.checklist(list.next, int(n))
+    
