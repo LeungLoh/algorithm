@@ -10,11 +10,11 @@ class Solution:
         m = {}
 
         res = 0
-        index = -1
+        index = 0
         for i in range(len(s)):
             if s[i] in m.keys():
-                index = max(m[s[i]], index)
-            res = max(res, i - index)
+                index = max(m[s[i]] + 1, index)
+            res = max(res, i - index + 1)
             m[s[i]] = i
         return res
 
