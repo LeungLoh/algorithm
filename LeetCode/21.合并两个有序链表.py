@@ -14,22 +14,20 @@ class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
         node1 = l1
         node2 = l2
-        head = ListNode(0)
-        p = head
+        head = ListNode()
+        node = head
         while node1 and node2:
             if node1.val < node2.val:
-                node = node1
+                node.next = node1
                 node1 = node1.next
             else:
-                node = node2
+                node.next = node2
                 node2 = node2.next
-            node.next = None
-            p.next = node
-            p = p.next
+            node = node.next
         if node1:
-            p.next = node1
-        elif node2:
-            p.next = node2
+            node.next = node1
+        if node2:
+            node.next = node2
         return head.next
 
 # @lc code=end

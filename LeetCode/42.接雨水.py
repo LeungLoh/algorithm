@@ -8,20 +8,19 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
         s = []
-        res=0
-        for i in len(height):
+        res = 0
+        length = len(height)
+        for i in range(length):
             if not s:
                 s.append(i)
-            elif height[i] < height[s[-1]]:
+            elif height[i] < s[-1]:
                 s.append(i)
             else:
-                length = 0
-                tmp=0
-                while s and  height[i]>=height[s[-1]]:
-                    tmp+=height[s.pop()]
-                    length += 1
-                if s:
-                    
+                temp = height[s[-1]]
+                for index in range(s[-1] + 1, i):
+                    res += temp - height[index]
+                s.pop()
+        return res
 
 
 # @lc code=end

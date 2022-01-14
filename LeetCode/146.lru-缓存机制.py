@@ -8,9 +8,9 @@
 class LRUCache:
 
     def __init__(self, capacity: int):
-        self.cache = {}
-        self.cap = capacity
         self.queue = []
+        self.cache = {}
+        self.capacity = capacity
 
     def get(self, key: int) -> int:
         if self.cache.get(key) != None:
@@ -23,12 +23,11 @@ class LRUCache:
     def put(self, key: int, value: int) -> None:
         if self.cache.get(key) != None:
             self.queue.remove(key)
-        elif len(self.queue) >= self.cap:
-            index = self.queue.pop()
-            self.cache.pop(index)
+        elif len(self.queue) >= self.capacity:
+            old = self.queue.pop()
+            self.cache.pop(old)
         self.cache[key] = value
         self.queue.insert(0, key)
-
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)

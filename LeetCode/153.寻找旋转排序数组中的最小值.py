@@ -9,10 +9,9 @@ class Solution:
     def findMin(self, nums: List[int]) -> int:
         l = 0
         r = len(nums) - 1
-
         while l < r:
-            mid = l + int((r - l) / 2)
-            if nums[mid] < nums[r]:
+            mid = l + (r - l) // 2
+            if nums[r] > nums[mid]:
                 r = mid
             else:
                 l = mid + 1

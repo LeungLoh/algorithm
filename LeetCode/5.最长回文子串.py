@@ -11,15 +11,20 @@ class Solution:
             return ""
         n = len(s)
         dp = [[0] * n for _ in range(n)]
-
-        for j in range(n):
-            for i in range(n - j):
-                if s[i] == s[i + j]:
-                    dp[i][i + j] = dp[i + 1][i + j - 1] if j > 1 else 1
+        maxlength = 0
         res = ""
-        for i in range(n):
-            for j in range(n):
-                if dp[i][j] == 1 and len(res) < (j - i + 1):
+        for i in range(n - 1, -1, -1):
+            for j in range(i, n):
+                if j - i == 0:
+                    dp[i][j] = 1
+                else:
+                    if s[i] == s[j]:
+                        if j - i == 1:
+                            dp[i][j] = 1
+                        else:
+                            dp[i][j] = dp[i + 1][j - 1]
+                if dp[i][j] and j - i + 1 > maxlength:
+                    maxlength = j - i + 1
                     res = s[i:j + 1]
         return res
 

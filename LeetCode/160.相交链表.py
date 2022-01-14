@@ -18,17 +18,17 @@ class Solution:
         node1 = headA
         node2 = headB
         while node1:
-            node1 = node1.next
             length1 += 1
+            node1 = node1.next
         while node2:
-            node2 = node2.next
             length2 += 1
+            node2 = node2.next
         node1 = headA
         node2 = headB
         if length1 > length2:
             for _ in range(length1 - length2):
                 node1 = node1.next
-        elif length2 > length1:
+        else:
             for _ in range(length2 - length1):
                 node2 = node2.next
         while node1 and node2:
