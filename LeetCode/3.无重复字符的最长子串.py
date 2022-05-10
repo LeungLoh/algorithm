@@ -8,7 +8,6 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         m = {}
-
         res = 0
         index = 0
         for i in range(len(s)):
@@ -17,6 +16,5 @@ class Solution:
             res = max(res, i - index + 1)
             m[s[i]] = i
         return res
-
 
 # @lc code=end
