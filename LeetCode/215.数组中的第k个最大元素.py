@@ -7,12 +7,11 @@
 # @lc code=start
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        helper = [-num for num in nums]
-
-        heapq.heapify(helper)
-
-        while k - 1 and helper:
-            heapq.heappop(helper)
-            k -= 1
-        return -helper[0]
+        res = []
+        for i in range(k):
+            heapq.heappush(res, nums[i])
+        for i in range(k, len(nums)):
+            if res[0] < nums[i]:
+                heapq.heappushpop(res, nums[i])
+        return res[0]
 # @lc code=end

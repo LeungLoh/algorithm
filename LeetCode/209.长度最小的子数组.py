@@ -7,13 +7,12 @@
 # @lc code=start
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
-        length = len(nums)
         l = 0
         r = 0
-        res = sys.maxsize
         sums = 0
-        while r < length:
-            while r < length and sums < target:
+        res = sys.maxsize
+        while r < len(nums):
+            while r < len(nums) and sums < target:
                 sums += nums[r]
                 r += 1
             while l <= r and sums >= target:
