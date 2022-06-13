@@ -8,6 +8,10 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         m = {}
+<<<<<<< HEAD
+=======
+        res = 0
+>>>>>>> 256575617e3d6ae378b722569b3ce3e69c1a426c
         index = 0
         res = 0
         for i in range(len(s)):
@@ -16,6 +20,5 @@ class Solution:
             res = max(res, i - index + 1)
             m[s[i]] = i
         return res
-
 
 # @lc code=end

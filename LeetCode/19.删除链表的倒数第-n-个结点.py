@@ -23,7 +23,7 @@ class Solution:
             p2 = p2.next
         if not pre:
             return head.next
-        else:
-            pre.next = pre.next.next
+        pre.next = pre.next.next
         return head
+
 # @lc code=end
