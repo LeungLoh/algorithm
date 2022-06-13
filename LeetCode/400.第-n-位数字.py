@@ -7,5 +7,18 @@
 # @lc code=start
 class Solution:
     def findNthDigit(self, n: int) -> int:
-# @lc code=end
+        if n < 10:
+            return n
+        i = 1
+        length = 0
+        cnt = 9
+        while n > length + cnt * i:
+            length += cnt * i
+            cnt *= 10
+            i += 1
+        num = pow(10, i - 1) + (n - length - 1) // i
+        index = (n - length - 1) % i
+        return int(str(num)[index])
 
+
+# @lc code=end

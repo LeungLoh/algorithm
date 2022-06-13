@@ -5,6 +5,15 @@
 #
 
 # @lc code=start
+# class Solution:
+#     def climbStairs(self, n: int) -> int:
+#         return self.dfs(n)
+
+#     def dfs(self, n):
+#         if n <= 2:
+#             return n
+#         return self.dfs(n-1)+self.dfs(n-2)
+
 class Solution:
     def climbStairs(self, n: int) -> int:
         if n <= 2:
