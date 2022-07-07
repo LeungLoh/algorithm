@@ -9,8 +9,10 @@ class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         m = {}
         for i in range(len(nums)):
-            if nums[i] in m.keys():
+            if m.get(nums[i]) == None:
+                m[target - nums[i]] = i
+            else:
                 return [m[nums[i]], i]
-            m[target - nums[i]] = i
         return [-1, -1]
+
 # @lc code=end

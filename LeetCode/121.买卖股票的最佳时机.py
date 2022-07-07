@@ -7,14 +7,10 @@
 # @lc code=start
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        n = len(prices)
-        if n <= 1:
-            return 0
-        dp = [0] * n
+        dp = [0] * len(prices)
         minprice = prices[0]
-        for i in range(1, n):
+        for i in range(1, len(prices)):
             dp[i] = max(dp[i - 1], prices[i] - minprice)
             minprice = min(minprice, prices[i])
         return dp[-1]
-
 # @lc code=end
