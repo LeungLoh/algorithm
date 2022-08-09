@@ -18,7 +18,6 @@ class Solution:
             while l < r:
                 if nums[i] + nums[l] + nums[r] > 0:
                     r -= 1
-
                 elif nums[i] + nums[l] + nums[r] < 0:
                     l += 1
                 else:
@@ -26,6 +25,7 @@ class Solution:
                     l += 1
                     r -= 1
         res = list(set(res))
-        return [[int(num) for num in item.split(',')] for item in res]
+        return [[int(num) for num in item.split(",")]for item in res]
+
 
 # @lc code=end

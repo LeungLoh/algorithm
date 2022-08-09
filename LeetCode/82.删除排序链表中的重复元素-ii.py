@@ -17,17 +17,14 @@ class Solution:
         pre = None
         node = head
         while node and node.next:
-            while node and node.next and node.val == node.next.val:
+            while node and node.next and node.next.val == node.val:
                 node = node.next
-
-            if pre and pre.next != node:
+            if pre and pre.next!=node:
                 pre.next = node.next
-            elif not pre and node != head:
+            elif not pre and node!=head:
                 head = node.next
             else:
                 pre = node
-
             node = node.next
-
         return head
 # @lc code=end
