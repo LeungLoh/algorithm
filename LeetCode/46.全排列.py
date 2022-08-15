@@ -13,10 +13,10 @@ class Solution:
         self.dfs(nums, [])
         return self.res
 
-    def dfs(self, nums, temp):
+    def dfs(self, nums, path):
         if not nums:
-            self.res.append(temp)
+            self.res.append(path)
         for i in range(len(nums)):
-            self.dfs(nums[:i] + nums[i + 1:], temp + [nums[i]])
+            self.dfs(nums[:i]+nums[i+1:],path+[nums[i]]) 
 
 # @lc code=end

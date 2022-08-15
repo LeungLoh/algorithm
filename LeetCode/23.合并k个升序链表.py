@@ -14,34 +14,33 @@ class Solution:
     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
         if not lists:
             return None
-        return self.merge(0, len(lists) - 1, lists)
+        if len(lists)==1:
+            return lists[0]
+        return self.mergelist(lists)
+        
+    def mergelist(self,lists):
+        head=lists[0]
+        for i in range(1,len(lists)):
+            head=self.merge(head,lists[i])
+        return head
 
-    def merge(self, left, right, lists):
-        if left > right:
-            return
-        if left == right:
-            return lists[left]
-        mid = left + (right - left) // 2
-        l1 = self.merge(left, mid, lists)
-        l2 = self.merge(mid + 1, right, lists)
-        return self.mergelist(l1, l2)
-
-    def mergelist(self, head1, head2):
-        node1, node2 = head1, head2
-        res = ListNode(0)
-        p = res
-        while node1 and node2:
-            if node1.val < node2.val:
-                node = ListNode(node1.val)
-                node1 = node1.next
+    def merge(self,head1,head2):
+        head=ListNode(0)
+        node=head
+        p1=head1
+        p2=head2
+        while p1 and p2:
+            if p1.val>p2.val:
+                node.next=p2
+                p2=p2.next
+                node=node.next
             else:
-                node = ListNode(node2.val)
-                node2 = node2.next
-            p.next = node
-            p = p.next
-        if node1:
-            p.next = node1
-        if node2:
-            p.next = node2
-        return res.next
+                node.next=p1
+                p1=p1.next
+                node=node.next
+        if p1:
+            node.next=p1
+        if p2:
+            node.next=p2
+        return head.next
 # @lc code=end

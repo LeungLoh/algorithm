@@ -21,10 +21,9 @@ class Solution:
         if i < 0 or i >= n or j < 0 or j >= m or grid[i][j] == '0':
             return
         grid[i][j] = '0'
-        self.dfs(grid, i + 1, j, n, m)
-        self.dfs(grid, i - 1, j, n, m)
-        self.dfs(grid, i, j + 1, n, m)
-        self.dfs(grid, i, j - 1, n, m)
-
+        self.dfs(grid, i + 1, j,n,m)
+        self.dfs(grid, i - 1, j,n,m)
+        self.dfs(grid, i, j + 1,n,m)
+        self.dfs(grid, i, j - 1,n,m)
 
 # @lc code=end
