@@ -14,12 +14,13 @@ class Solution:
         return self.res
 
     def dfs(self, candidates, path, sums, target):
+        if sums > target:
+            return
         if sums == target:
             self.res.append(path)
             return
-        if sums > target:
-            return
         for i in range(len(candidates)):
             self.dfs(candidates[i:], path + [candidates[i]], sums + candidates[i], target)
+
 
 # @lc code=end
