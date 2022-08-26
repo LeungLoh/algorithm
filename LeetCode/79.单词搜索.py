@@ -7,28 +7,23 @@
 # @lc code=start
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        if not board:
-            return False if word else True
-        n = len(board)
-        m = len(board[0])
-        for i in range(n):
-            for j in range(m):
-                if self.dfs(board, list(word), i, j, n, m):
+        m=len(board)
+        n=len(board[0])
+        for i in range(m):
+            for j in range(n):
+                if self.dfs(board, i, j, len(board), len(board[0]), word):
                     return True
         return False
 
-    def dfs(self, board, word, i, j, n, m):
+    def dfs(self, board, i, j, m, n, word):
         if not word:
             return True
-        if i < 0 or i >= n or j < 0 or j >= m or board[i][j] != word[0] or board[i][j] == 0:
+        if i < 0 or i >= m or j < 0 or j >= n or board[i][j] != word[0]:
             return False
         temp = board[i][j]
-        board[i][j] = 0
-
-        res = self.dfs(board, word[1:], i + 1, j, n, m) or\
-            self.dfs(board, word[1:], i - 1, j, n, m) or\
-            self.dfs(board, word[1:], i, j + 1, n, m) or\
-            self.dfs(board, word[1:], i, j - 1, n, m)
+        board[i][j]=0
+        res = self.dfs(board, i + 1, j, m, n, word[1:]) or self.dfs(board, i - 1, j, m, n, word[1:]) or \
+            self.dfs(board, i, j + 1, m, n, word[1:]) or self.dfs(board, i, j - 1, m, n, word[1:])
         board[i][j] = temp
         return res
 # @lc code=end
