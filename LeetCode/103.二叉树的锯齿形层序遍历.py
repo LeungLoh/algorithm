@@ -11,12 +11,15 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from re import L
+
+
 class Solution:
     def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
         if not root:
             return []
         queue = [root]
-        flag = False
+        flag = True
         res = []
         while queue:
             size = len(queue)
@@ -28,10 +31,11 @@ class Solution:
                     queue.append(node.left)
                 if node.right:
                     queue.append(node.right)
-            if flag:
+            if not flag:
                 temp = temp[::-1]
             flag = not flag
             res.append(temp)
         return res
+
 
 # @lc code=end
