@@ -7,7 +7,7 @@
 # @lc code=start
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        res = []
+        res = set()
         nums = sorted(nums)
         n = len(nums)
         for i in range(n - 2):
@@ -16,16 +16,16 @@ class Solution:
             l = i + 1
             r = n - 1
             while l < r:
-                if nums[i] + nums[l] + nums[r] > 0:
-                    r -= 1
-                elif nums[i] + nums[l] + nums[r] < 0:
+                if nums[i] + nums[l] + nums[r] == 0:
+                    res.add("{},{},{}".format(nums[i], nums[l], nums[r]))
                     l += 1
+                    r -= 1
+                elif nums[i] + nums[l] + nums[r] > 0:
+                    r -= 1
                 else:
-                    res.append("{},{},{}".format(nums[i], nums[l], nums[r]))
                     l += 1
-                    r -= 1
         res = list(set(res))
-        return [[int(num) for num in item.split(",")]for item in res]
+        return [[int(num) for num in item.split(",")] for item in res]
 
 
 # @lc code=end
