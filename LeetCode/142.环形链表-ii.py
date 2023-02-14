@@ -18,16 +18,14 @@ class Solution:
             return None
         p1 = head
         p2 = head
-        count = 1
-        while p1.next and p2.next and p2.next.next:
+        while p2 and p2.next:
             p1 = p1.next
             p2 = p2.next.next
-            count += 1
             if p1 == p2:
-                p3 = head
-                while p1 != p3:
+                p1 = head
+                while p1 != p2:
                     p1 = p1.next
-                    p3 = p3.next
+                    p2 = p2.next
                 return p1
         return None
 

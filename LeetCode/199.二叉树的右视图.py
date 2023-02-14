@@ -24,7 +24,7 @@ class Solution:
     def dfs(self, root, depth):
         if not root:
             return
-        if depth > len(self.view):
+        if len(self.view) < depth:
             self.view.append(root.val)
         self.dfs(root.right, depth + 1)
         self.dfs(root.left, depth + 1)

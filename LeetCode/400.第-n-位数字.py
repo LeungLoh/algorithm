@@ -9,16 +9,16 @@ class Solution:
     def findNthDigit(self, n: int) -> int:
         if n < 10:
             return n
-        i = 1
+        k = 1
         length = 0
         cnt = 9
-        while n > length + cnt * i:
-            length += cnt * i
+        while n > length + cnt * k:
+            length += cnt * k
             cnt *= 10
-            i += 1
-        num = pow(10, i - 1) + (n - length - 1) // i
-        index = (n - length - 1) % i
-        return int(str(num)[index])
+            k += 1
 
+        num = pow(10, k - 1) + (n - length - 1) // k
+        index = (n - length - 1) % k
+        return int(str(num)[index])
 
 # @lc code=end

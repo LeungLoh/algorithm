@@ -12,39 +12,39 @@
 #         self.next = next
 class Solution:
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
-        start = head
-        end = head
-        pre = None
-        res = head
+        pre=None
+        next=None
+        res=head
+        end=head
+        start=head
+    
         while end:
-            end = start
-            for _ in range(k - 1):
+            for _ in range(k-1):
                 if not end:
                     break
-                end = end.next
+                end=end.next
             if not end:
                 break
-
-            next = end.next
-            end.next = None
-
+            next=end.next
+            end.next=None
             self.reverse(start)
-            if pre:
-                pre.next = end
+            if not pre:
+                res=end
             else:
-                res = end
-            start.next = next
-            pre = start
-            start = start.next
+                pre.next=end
+            start.next=next
+            pre=start
+            start=next
+            end=next                      
         return res
-
-    def reverse(self, head):
-        node = head
-        pre = None
-        next = None
+    
+    def reverse(self,head):
+        node=head
+        pre=None
+        next=None
         while node:
-            next = node.next
-            node.next = pre
-            pre = node
-            node = next
+            next=node.next
+            node.next=pre
+            pre=node
+            node=next
 # @lc code=end

@@ -14,16 +14,13 @@ class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
         p1 = head
         p2 = head
-        pre = None
-        for _ in range(n):
+        for _ in range(n + 1):
+            if not p1:
+                return None
             p1 = p1.next
         while p1:
-            pre = p2
             p1 = p1.next
             p2 = p2.next
-        if not pre:
-            return head.next
-        pre.next = pre.next.next
+        p2.next = p2.next.next
         return head
-
 # @lc code=end

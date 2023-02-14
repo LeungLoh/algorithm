@@ -21,15 +21,13 @@ class Solution:
         self.dfs(root, 0)
         return self.res
 
-    def dfs(self, root, value):
+    def dfs(self, root, v):
         if not root:
             return
-        v = value * 10 + root.val
-        if root.left == None and root.right == None:
-            self.res += v
-        if root.left:
-            self.dfs(root.left, v)
-        if root.right:
-            self.dfs(root.right, v)
+        if not root.left and not root.right:
+            self.res += v * 10 + root.val
+            return
+        self.dfs(root.left, v * 10 + root.val)
+        self.dfs(root.right, v * 10 + root.val)
 
 # @lc code=end

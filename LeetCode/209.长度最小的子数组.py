@@ -10,7 +10,7 @@ class Solution:
         l = 0
         r = 0
         sums = 0
-        res = sys.maxsize
+        res = len(nums) + 1
         while r < len(nums):
             while r < len(nums) and sums < target:
                 sums += nums[r]
@@ -19,6 +19,6 @@ class Solution:
                 res = min(res, r - l)
                 sums -= nums[l]
                 l += 1
-        return res if res != sys.maxsize else 0
+        return res if res != len(nums) + 1 else 0
 
 # @lc code=end
