@@ -13,7 +13,7 @@ class Solution:
         for i in range(len(s)):
             if m.get(s[i]) != None:
                 index = max(index, m[s[i]] + 1)
-            res = max(res, i - index + 1)
+            res = max(res, i - index+1)
             m[s[i]] = i
         return res
 
