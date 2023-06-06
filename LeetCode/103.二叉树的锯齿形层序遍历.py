@@ -16,26 +16,45 @@ from re import L
 
 class Solution:
     def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
+        # if not root:
+        #     return []
+        # queue = [root]
+        # flag = True
+        # res = []
+        # while queue:
+        #     size = len(queue)
+        #     temp = []
+        #     for _ in range(size):
+        #         node = queue.pop(0)
+        #         temp.append(node.val)
+        #         if node.left:
+        #             queue.append(node.left)
+        #         if node.right:
+        #             queue.append(node.right)
+        #     if not flag:
+        #         temp = temp[::-1]
+        #     flag = not flag
+        #     res.append(temp)
+        # return res
         if not root:
             return []
-        queue = [root]
-        flag = True
-        res = []
+        queue=[root]
+        flag=True
+        res=[]
         while queue:
-            size = len(queue)
-            temp = []
+            size=len(queue)
+            temp=[]
             for _ in range(size):
-                node = queue.pop(0)
-                temp.append(node.val)
+                node=queue.pop(0)
                 if node.left:
                     queue.append(node.left)
                 if node.right:
                     queue.append(node.right)
-            if not flag:
-                temp = temp[::-1]
-            flag = not flag
-            res.append(temp)
+                temp.append(node.val)
+            if flag:
+                res.append(temp)
+            else:
+                res.append(temp[::-1])
         return res
-
 
 # @lc code=end

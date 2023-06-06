@@ -9,15 +9,15 @@ class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         if not k or not nums:
             return -1
-        if k > len(nums):
+        if len(nums) < k:
             return -1
         if k == 1 and len(nums) == 1:
             return nums[0]
-        if len(nums) == 2 and (k == 1 or k == 2):
+        if len(nums) == 2:
             if k == 1:
                 return nums[0] if nums[0] > nums[1] else nums[1]
             if k == 2:
-                return nums[0] if nums[0] < nums[1] else nums[1]
+                return nums[1] if nums[0] > nums[1] else nums[0]
         p = self.parition(nums, 0, len(nums) - 1)
         if len(nums) - p == k:
             return nums[p]
@@ -27,17 +27,17 @@ class Solution:
             return self.findKthLargest(nums[:p], k - (len(nums) - p))
 
     def parition(self, nums, l, r):
-        pivot = nums[l]
+        key = nums[l]
         left = l
         right = r
         while left < right:
-            while left < right and nums[right] >= pivot:
+            while left < right and nums[right] >= key:
                 right -= 1
-            while left < right and nums[left] <= pivot:
+            while left < right and nums[left] <= key:
                 left += 1
             if left < right:
                 nums[left], nums[right] = nums[right], nums[left]
-        nums[l], nums[left] = nums[left], nums[l]
+        nums[left], nums[l] = nums[l], nums[left]
         return left
 
 # @lc code=end

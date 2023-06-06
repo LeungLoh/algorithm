@@ -10,7 +10,6 @@ class Solution:
         s = s.strip().split(" ")
         while "" in s:
             s.remove("")
-        s = s[::-1]
-        return " ".join(s)
+        return " ".join(s[::-1])
 
 # @lc code=end

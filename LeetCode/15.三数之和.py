@@ -11,8 +11,6 @@ class Solution:
         nums = sorted(nums)
         n = len(nums)
         for i in range(n - 2):
-            if nums[i] > 0:
-                break
             l = i + 1
             r = n - 1
             while l < r:
@@ -24,7 +22,6 @@ class Solution:
                     r -= 1
                 else:
                     l += 1
-        res = list(set(res))
         return [[int(num) for num in item.split(",")] for item in res]
 
 

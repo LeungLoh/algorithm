@@ -8,14 +8,14 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         n = len(nums)
-        dpf = [1] * n
+        dps = [1] * n
         dpe = [1] * n
         for i in range(1, n):
-            dpf[i] = dpf[i - 1] * nums[i - 1]
+            dps[i] = dps[i - 1] * nums[i - 1]
         for i in range(n - 2, -1, -1):
             dpe[i] = dpe[i + 1] * nums[i + 1]
         res = []
         for i in range(n):
-            res.append(dpf[i] * dpe[i])
+            res.append(dps[i] * dpe[i])
         return res
 # @lc code=end
