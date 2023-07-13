@@ -12,13 +12,13 @@
 #         self.next = next
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
-        next = None
+        _next = None
         pre = None
         node = head
         while node:
-            next = node.next
+            _next = node.next
             node.next = pre
             pre = node
-            node = next
+            node = _next
         return pre
 # @lc code=end

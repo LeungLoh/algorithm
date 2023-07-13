@@ -13,22 +13,24 @@
 #         self.right = right
 class Solution:
     def __init__(self):
-        self.res=0
+        self.res = 0
+
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
         if not root:
             return 0
-        self.dfs(root,targetSum)
-        self.pathSum(root.left,targetSum)
-        self.pathSum(root.right,targetSum)
+        self.dfs(root, targetSum)
+        self.pathSum(root.left, targetSum)
+        self.pathSum(root.right, targetSum)
         return self.res
 
-    def dfs(self,root,target):
+    def dfs(self, root, targetSum):
         if not root:
-            return 
-        target-=root.val
-        if target==0:
-            self.res+=1
-        self.dfs(root.left,target)
-        self.dfs(root.right,target)
+            return
+        targetSum -= root.val
+        if targetSum == 0:
+            self.res += 1
+        self.dfs(root.left, targetSum)
+        self.dfs(root.right, targetSum)
+
 
 # @lc code=end

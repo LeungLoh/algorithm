@@ -1,7 +1,7 @@
 #
-# @lc app=leetcode.cn id=199 lang=python3
+# @lc app=leetcode.cn id=1161 lang=python3
 #
-# [199] 二叉树的右视图
+# [1161] 最大层内元素和
 #
 
 # @lc code=start
@@ -11,28 +11,32 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
-
 class Solution:
     def __init__(self) -> None:
-        self.res = []
+        self.max_sums = -sys.maxsize + 1
+        self.max_level = 1
 
-    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+    def maxLevelSum(self, root: Optional[TreeNode]) -> int:
         if not root:
-            return []
-        self.bfs([root])
-        return self.res
+            return 0
+        self.bfs([root], 1)
+        return self.max_level
 
-    def bfs(self, queue):
+    def bfs(self, queue, depth):
         if not queue:
             return
-        self.res.append(queue[-1].val)
         size = len(queue)
+        sums = 0
         for _ in range(size):
             node = queue.pop(0)
             if node.left:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
-        self.bfs(queue)
+            sums += node.val
+        if sums > self.max_sums:
+            self.max_sums = sums
+            self.max_level = depth
+        self.bfs(queue, depth + 1)
+
 # @lc code=end

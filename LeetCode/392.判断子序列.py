@@ -23,14 +23,23 @@
 
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
+        if not s:
+            return True
+        if not t:
+            return False
         n = len(t)
-        dp = {i: {c: -1 for c in s}for i in range(n)}
-        dp[n - 1][t[-1]] = n - 1
+        dp = [[-1] * 26 for i in range(n)]
+        dp[-1][ord(t[-1]) - ord('a')] = n - 1
         for i in range(n - 2, -1, -1):
-            for j in range(i, n):
-                if t[i] == t[j]:
-                    dp[i][t[j]] = i
-                else:
-                    dp[i][j] = dp[i + 1][j]
-
+            for j in range(26):
+                dp[i][j] = i if ord(t[i]) - ord('a') == j else dp[i + 1][j]
+        cur = 0
+        for c in s:
+            if cur >= n:
+                return False
+            new_cur = dp[cur][ord(c) - ord('a')]
+            if new_cur == -1:
+                return False
+            cur = new_cur + 1
+        return True
 # @lc code=end

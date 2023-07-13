@@ -19,13 +19,10 @@ class Solution:
     def dfs(self, root, p, q):
         if not root or root == p or root == q:
             return root
-
         left = self.dfs(root.left, p, q)
         right = self.dfs(root.right, p, q)
         if left and right:
             return root
-        elif not left and not right:
-            return None
         return left if left else right
 
 # @lc code=end

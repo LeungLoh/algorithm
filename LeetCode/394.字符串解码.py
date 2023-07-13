@@ -12,18 +12,20 @@ from curses.ascii import isdigit
 
 class Solution:
     def decodeString(self, s: str) -> str:
+
         stack = []
         res = ""
         num = 0
         for item in s:
-            if item.isdigit():
+            if isdigit(item):
                 num = num * 10 + int(item)
-            elif item == '[':
-                stack.append([res, num])
-                res, num = "", 0
-            elif item == ']':
+            elif item == "[":
+                stack.append((res, num))
+                num = 0
+                res = ""
+            elif item == "]":
                 temp = stack.pop()
-                res = temp[0] + res * temp[1]
+                res = temp[0] + temp[1] * res
             else:
                 res += item
         return res
