@@ -8,18 +8,19 @@
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         n = len(isConnected)
-        isvisit = [0] * n
+        visited = [0] * n
         res = 0
         for i in range(n):
-            if isvisit[i] == 0:
+            if visited[i] == 0:
                 res += 1
-                isvisit[i] == 1
-                self.dfs(isConnected, isvisit, i, n)
+                visited[i] == 1
+                self.dfs(isConnected, visited, i, n)
         return res
 
-    def dfs(self, isConnected, isvisit, i, n):
+    def dfs(self, isConnected, visited, i, n):
         for j in range(n):
-            if isConnected[i][j] == 1 and isvisit[j] == 0:
-                isvisit[j] = 1
-                self.dfs(isConnected, isvisit, j, n)
+            if isConnected[i][j] == 1 and visited[j] == 0:
+                visited[j] = 1
+                self.dfs(isConnected, visited, j, n)
+
 # @lc code=end

@@ -19,12 +19,13 @@ class Solution:
             if k == 2:
                 return nums[1] if nums[0] > nums[1] else nums[0]
         p = self.parition(nums, 0, len(nums) - 1)
+        right = len(nums) - p - 1
         if len(nums) - p == k:
             return nums[p]
-        if len(nums) - p - 1 >= k:
+        if right >= k:
             return self.findKthLargest(nums[p + 1:], k)
         else:
-            return self.findKthLargest(nums[:p], k - (len(nums) - p))
+            return self.findKthLargest(nums[:p], k - right - 1)
 
     def parition(self, nums, l, r):
         key = nums[l]
@@ -37,7 +38,7 @@ class Solution:
                 left += 1
             if left < right:
                 nums[left], nums[right] = nums[right], nums[left]
-        nums[left], nums[l] = nums[l], nums[left]
+        nums[l], nums[left] = nums[left], nums[l]
         return left
 
 # @lc code=end
