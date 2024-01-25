@@ -8,9 +8,10 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         dp = [0] * len(prices)
-        minprice = prices[0]
-        for i in range(1, len(prices)):
-            dp[i] = max(dp[i - 1], prices[i] - minprice)
-            minprice = min(minprice, prices[i])
-        return dp[-1]
+        dp[-1] = prices[-1]
+        res = 0
+        for i in range(len(prices) - 2, -1, -1):
+            dp[i] = max(dp[i + 1], prices[i])
+            res = max(dp[i] - prices[i], res)
+        return res
 # @lc code=end

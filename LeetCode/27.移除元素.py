@@ -7,18 +7,11 @@
 # @lc code=start
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
-        right = len(nums) - 1
-        left = 0
-        while left <= right:
+        index = 0
+        for i, v in enumerate(nums):
+            if v != val:
+                nums[index] = nums[i]
+                index += 1
+        return index
 
-            while nums[left] == val:
-                if left == right:
-                    if nums[left] == val:
-                        return left
-                    else:
-                        return left + 1
-                nums[left], nums[right] = nums[right], nums[left]
-                right -= 1
-            left += 1
-        return left
 # @lc code=end
