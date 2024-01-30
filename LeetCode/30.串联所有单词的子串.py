@@ -9,37 +9,31 @@ from typing import *
 
 
 class Solution:
+    # def __init__(self) -> None:
+    #     self.paths = set()
 
+    # def dfs(self, words, path):
+    #     if not words:
+    #         self.paths.add(path)
+    #     for i, word in enumerate(words):
+    #         self.dfs(words[:i] + words[i + 1:], path + word)
+
+    # def findSubstring(self, s: str, words: List[str]) -> List[int]:
+    #     self.dfs(words, "")
+    #     left = 0
+    #     right = len(words[0]) * len(words)
+    #     res = []
+    #     while right <= len(s):
+    #         if s[left:right] in self.paths:
+    #             res.append(left)
+    #         left += 1
+    #         right += 1
+    #     return res
     def findSubstring(self, s: str, words: List[str]) -> List[int]:
-        step = len(words[0])
-        length = len(words[0]) * len(words)
-        res = []
-        words_map = DefaultDict(int)
-        for word in words:
-            words_map[word] += 1
-        for i in range(0, len(s) - length + 1):
-            temp = s[i:i + length]
-            paths = [temp[i:i + step] for i in range(0, length, step)]
-            visited = DefaultDict(int)
-            for word in paths:
-                if word in words:
-                    visited[word] += 1
-                else:
-                    break
-
-            if len(visited) != len(words_map):
-                continue
-
-            check = True
-            for k, v in visited.items():
-                if words_map.get(k, 0) != v:
-                    check = False
-                    break
-            if check:
-                res.append(i)
-        return res
+        pass
 
 
 test = Solution()
-# print(test.findSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake", ["fooo", "barr", "wing", "ding", "wing"]))
+print(test.findSubstring("pjzkrkevzztxductzzxmxsvwjkxpvukmfjywwetvfnujhweiybwvvsrfequzkhossmootkmyxgjgfordrpapjuunmqnxxdrqrfgkrsjqbszgiqlcfnrpjlcwdrvbumtotzylshdvccdmsqoadfrpsvnwpizlwszrtyclhgilklydbmfhuywotjmktnwrfvizvnmfvvqfiokkdprznnnjycttprkxpuykhmpchiksyucbmtabiqkisgbhxngmhezrrqvayfsxauampdpxtafniiwfvdufhtwajrbkxtjzqjnfocdhekumttuqwovfjrgulhekcpjszyynadxhnttgmnxkduqmmyhzfnjhducesctufqbumxbamalqudeibljgbspeotkgvddcwgxidaiqcvgwykhbysjzlzfbupkqunuqtraxrlptivshhbihtsigtpipguhbhctcvubnhqipncyxfjebdnjyetnlnvmuxhzsdahkrscewabejifmxombiamxvauuitoltyymsarqcuuoezcbqpdaprxmsrickwpgwpsoplhugbikbkotzrtqkscekkgwjycfnvwfgdzogjzjvpcvixnsqsxacfwndzvrwrycwxrcismdhqapoojegggkocyrdtkzmiekhxoppctytvphjynrhtcvxcobxbcjjivtfjiwmduhzjokkbctweqtigwfhzorjlkpuuliaipbtfldinyetoybvugevwvhhhweejogrghllsouipabfafcxnhukcbtmxzshoyyufjhzadhrelweszbfgwpkzlwxkogyogutscvuhcllphshivnoteztpxsaoaacgxyaztuixhunrowzljqfqrahosheukhahhbiaxqzfmmwcjxountkevsvpbzjnilwpoermxrtlfroqoclexxisrdhvfsindffslyekrzwzqkpeocilatftymodgztjgybtyheqgcpwogdcjlnlesefgvimwbxcbzvaibspdjnrpqtyeilkcspknyylbwndvkffmzuriilxagyerjptbgeqgebiaqnvdubrtxibhvakcyotkfonmseszhczapxdlauexehhaireihxsplgdgmxfvaevrbadbwjbdrkfbbjjkgcztkcbwagtcnrtqryuqixtzhaakjlurnumzyovawrcjiwabuwretmdamfkxrgqgcdgbrdbnugzecbgyxxdqmisaqcyjkqrntxqmdrczxbebemcblftxplafnyoxqimkhcykwamvdsxjezkpgdpvopddptdfbprjustquhlazkjfluxrzopqdstulybnqvyknrchbphcarknnhhovweaqawdyxsqsqahkepluypwrzjegqtdoxfgzdkydeoxvrfhxusrujnmjzqrrlxglcmkiykldbiasnhrjbjekystzilrwkzhontwmehrfsrzfaqrbbxncphbzuuxeteshyrveamjsfiaharkcqxefghgceeixkdgkuboupxnwhnfigpkwnqdvzlydpidcljmflbccarbiegsmweklwngvygbqpescpeichmfidgsjmkvkofvkuehsmkkbocgejoiqcnafvuokelwuqsgkyoekaroptuvekfvmtxtqshcwsztkrzwrpabqrrhnlerxjojemcxel", [
+      "dhvf", "sind", "ffsl", "yekr", "zwzq", "kpeo", "cila", "tfty", "modg", "ztjg", "ybty", "heqg", "cpwo", "gdcj", "lnle", "sefg", "vimw", "bxcb"]))
 # @lc code=end

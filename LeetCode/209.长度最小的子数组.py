@@ -3,22 +3,29 @@
 #
 # [209] 长度最小的子数组
 #
-
+import sys
+from typing import *
 # @lc code=start
+
+
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
-        l = 0
-        r = 0
-        sums = 0
-        res = len(nums) + 1
-        while r < len(nums):
-            while r < len(nums) and sums < target:
-                sums += nums[r]
-                r += 1
-            while l <= r and sums >= target:
-                res = min(res, r - l)
-                sums -= nums[l]
-                l += 1
-        return res if res != len(nums) + 1 else 0
+        left = 0
+        right = 0
+        res = sys.maxsize
+        pre = 0
+        while right < len(nums):
+            if pre < target:
+                pre += nums[right]
 
+            while left <= right and pre >= target:
+                res = min(res, right - left + 1)
+                pre -= nums[left]
+                left += 1
+            right += 1
+        return res if res != sys.maxsize else 0
+
+
+# test = Solution()
+# print(test.minSubArrayLen(4, [1, 4, 4]))
 # @lc code=end

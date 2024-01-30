@@ -15,23 +15,24 @@ class Solution:
         }
 
     def intToRoman(self, num: int) -> str:
-        bit = 1
         res = ""
+        index = 1
         while num:
-            x = num % 10
-            sign = self.m.get(bit)
-            if x < 4:
-                res = x * sign[0] + res
-            elif x == 4:
-                res = sign[0] + sign[1] + res
-            elif x == 5:
-                res = sign[1] + res
-            elif x > 5 and x < 9:
-                res = sign[1] + sign[0] * (x - 5) + res
+            bit = num % 10
+            sign = self.m[index]
+            if bit < 4:
+                s = sign[0] * bit
+            elif bit == 4:
+                s = sign[0] + sign[1]
+            elif bit == 5:
+                s = sign[1]
+            elif bit > 5 and bit < 9:
+                s = sign[1] + sign[0] * (bit - 5)
             else:
-                res = sign[0] + sign[2] + res
+                s = sign[0] + sign[-1]
             num //= 10
-            bit += 1
+            index += 1
+            res = s + res
         return res
 
 

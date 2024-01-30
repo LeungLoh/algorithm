@@ -12,10 +12,10 @@ class Solution:
         res = 0
         while left < right:
             res = max(res, (right - left) * min(height[left], height[right]))
-            if height[right] < height[left]:
-                right -= 1
-            else:
+            if height[left] < height[right]:
                 left += 1
+            else:
+                right -= 1
         return res
 
 # @lc code=end

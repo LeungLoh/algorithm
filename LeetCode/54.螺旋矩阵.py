@@ -10,40 +10,29 @@ from pickle import MARK
 
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        if not matrix:
-            return []
-        top, buttom = 0, len(matrix) - 1
-        left, right = 0, len(matrix[0]) - 1
+        left, right, top, buttom = 0, len(matrix[0]) - 1, 0, len(matrix) - 1
         res = []
         while left < right and top < buttom:
-            i, j = top, left
-            while j < right:
+            for j in range(left, right):
                 res.append(matrix[top][j])
-                j += 1
-            while i < buttom:
+            for i in range(top, buttom):
                 res.append(matrix[i][right])
-                i += 1
-            while j > left:
+            for j in range(right, left, -1):
                 res.append(matrix[buttom][j])
-                j -= 1
-            while i > top:
+            for i in range(buttom, top, -1):
                 res.append(matrix[i][left])
-                i -= 1
-            top += 1
-            buttom -= 1
             left += 1
+            top += 1
             right -= 1
+            buttom -= 1
         if left == right and top == buttom:
-            res.append(matrix[left][top])
-        elif left < right and top == buttom:
-            while left <= right:
-                res.append(matrix[top][left])
-                left += 1
-        elif top < buttom and left == right:
-            while top <= buttom:
-                res.append(matrix[top][left])
-                top += 1
+            res.append(matrix[top][left])
+        elif left == right:
+            for i in range(top, buttom + 1):
+                res.append(matrix[i][left])
+        elif top == buttom:
+            for i in range(left, right + 1):
+                res.append(matrix[top][i])
         return res
-
 
 # @lc code=end

@@ -32,13 +32,9 @@ class Solution:
              'CM']
 
         while i < len(s):
-            if i < len(s) - 1:
-                if s[i:i + 2] in l:
-                    res += m[s[i:i + 2]]
-                    i += 2
-                else:
-                    res += m[s[i]]
-                    i += 1
+            if i < len(s) - 1 and s[i: i + 2] in l:
+                res += m[s[i:i + 2]]
+                i += 2
             else:
                 res += m[s[i]]
                 i += 1
