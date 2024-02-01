@@ -16,27 +16,24 @@ class Solution:
             return head
         length = 0
         node = head
+        end = head
         while node:
             length += 1
+            end = node
             node = node.next
         k = k % length
-        if k == 0:
+        if not k:
             return head
-
-        p1 = head
-        p2 = head
-        for _ in range(k + 1):
+        p1, p2 = head, head
+        for _ in range(k):
             p1 = p1.next
-        while p1:
+        while p1 and p1.next:
             p1 = p1.next
             p2 = p2.next
-        res = p2.next
-        end = p2.next
+        _next = p2.next
         p2.next = None
-
-        while end.next:
-            end = end.next
         end.next = head
-        return res
+        return _next
+
 
 # @lc code=end

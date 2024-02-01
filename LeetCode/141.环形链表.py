@@ -13,13 +13,16 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
+        if not head or not head.next or not head.next.next:
+            return False
+
         p1 = head
-        p2 = head
-        while p1 and p2 and p2.next:
-            p1 = p1.next
-            p2 = p2.next.next
+        p2 = head.next.next
+        while p2 and p2.next:
             if p1 == p2:
                 return True
+            p1 = p1.next
+            p2 = p2.next.next
         return False
 
 # @lc code=end

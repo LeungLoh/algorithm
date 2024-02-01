@@ -14,36 +14,28 @@
 
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        res = ListNode(0)
-        node = res
-        flag = False
-        node1 = l1
-        node2 = l2
-        while node1 or node2:
-            if not node1:
-                val = node2.val + 1 if flag else node2.val
-                flag = True if val >= 10 else False
-                node.next = ListNode(val % 10)
-                node2 = node2.next
-            elif not node2:
-                val = node1.val + 1 if flag else node1.val
-                flag = True if val >= 10 else False
-                node.next = ListNode(val % 10)
-                node1 = node1.next
-            else:
-
-
-                val = node1.val + node2.val
-                val = val + 1 if flag else val
-                flag = True if val >= 10 else False
-                node.next = ListNode(val % 10)
-                node1 = node1.next
-                node2 = node2.next
-            node=node.next
-
-        if flag:
-            node.next = ListNode(1)
-        return res.next
-
+        num1, num2 = 0, 0
+        node1, node2 = l1, l2
+        bit = 0
+        while node1:
+            num1 += node1.val * pow(10, bit)
+            node1 = node1.next
+            bit += 1
+        bit = 0
+        while node2:
+            num2 += node2.val * pow(10, bit)
+            node2 = node2.next
+            bit += 1
+        num = num1 + num2
+        head = ListNode(0)
+        node = head
+        if num == 0:
+            return head
+        while num:
+            val = num % 10
+            node.next = ListNode(val)
+            node = node.next
+            num //= 10
+        return head.next
 
 # @lc code=end

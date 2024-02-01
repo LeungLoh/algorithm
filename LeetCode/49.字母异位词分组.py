@@ -3,19 +3,21 @@
 #
 # [49] 字母异位词分组
 #
-
+from collections import *
+from typing import *
 # @lc code=start
+
+
 class Solution:
-    def __init__(self):
-        self.paths = []
 
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        words = defaultdict(list)
-        for item in strs:
-            key = "".join(sorted(item))
-            words[key].append(item)
-        res = []
-        for k, v in words.items():
-            res.append(v)
-        return res
+        m = defaultdict(list)
+        for s in strs:
+            key = "".join(sorted(s))
+            m[key].append(s)
+        return list(m.values())
+
+
+test = Solution()
+test.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"])
 # @lc code=end

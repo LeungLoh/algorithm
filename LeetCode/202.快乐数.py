@@ -14,9 +14,9 @@ class Solution:
             while n:
                 ans += pow(n % 10, 2)
                 n //= 10
-            n = ans
-            if n == 1:
+            if ans == 1:
                 return True
+            n = ans
         return False
 
 # @lc code=end

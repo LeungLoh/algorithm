@@ -9,16 +9,24 @@ class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
         for item in s:
-            if item == "(" or item == "{" or item == "[":
+            if item == "(" or item == "[" or item == "{":
                 stack.append(item)
-            elif stack and ((item == ")" and  stack[-1] == "(") or
-                            (item == "}" and  stack[-1] == "{")or
-                            (item == "]" and  stack[-1] == "[")
-            ):
-               
-                    stack.pop()
-            else:
-                return False          
+            elif item == ")":
+                if not stack or stack[-1] != "(":
+                    return False
+                stack.pop()
+            elif item == "}":
+                if not stack or stack[-1] != "{":
+                    return False
+                stack.pop()
+            elif item == "]":
+                if not stack or stack[-1] != "[":
+                    return False
+                stack.pop()
         return True if not stack else False
+
+
+test = Solution()
+test.isValid("()")
 
 # @lc code=end

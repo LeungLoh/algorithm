@@ -7,23 +7,16 @@
 # @lc code=start
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-
-        intervals = sorted(intervals, key=lambda x: x[0])
-        index = 0
-        start = intervals[0][0]
-        end = intervals[0][1]
-        res = []
-        while index < len(intervals):
-            if index == len(intervals) - 1:
-                res.append([start, end])
-            elif end < intervals[index + 1][0]:
-                res.append([start, end])
-                start = intervals[index + 1][0]
-                end = intervals[index + 1][1]
+        _intervals = sorted(intervals, key=lambda x: x[0])
+        res = [_intervals[0]]
+        for i in range(1, len(_intervals)):
+            last = res[-1]
+            if last[1] >= _intervals[i][0]:
+                last[1] = max(last[1], _intervals[i][1])
+                res.pop()
+                res.append(last)
             else:
-                end = max(intervals[index + 1][1], end)
-            index += 1
+                res.append(_intervals[i])
         return res
-
 
 # @lc code=end

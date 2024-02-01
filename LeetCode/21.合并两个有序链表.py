@@ -12,10 +12,9 @@
 #         self.next = next
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
-        head = ListNode()
+        node1, node2 = l1, l2
+        head = ListNode(0)
         node = head
-        node1 = l1
-        node2 = l2
         while node1 and node2:
             if node1.val < node2.val:
                 node.next = node1
@@ -29,4 +28,5 @@ class Solution:
         if node2:
             node.next = node2
         return head.next
+
 # @lc code=end

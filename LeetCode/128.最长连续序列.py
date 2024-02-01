@@ -9,16 +9,15 @@ class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         m = {}
         res = 0
-        for num in nums:
-            if num not in m:
-                left = m.get(num - 1, 0)
-                right = m.get(num + 1, 0)
-                length = left + right + 1
-
+        for i, v in enumerate(nums):
+            if v not in m:
+                left = m.get(v - 1, 0)
+                right = m.get(v + 1, 0)
+                length = right + left + 1
                 res = max(res, length)
-
-                m[num] = length
-                m[num - left] = length
-                m[num + right] = length
+                m[v] = length
+                m[v - left] = length
+                m[v + right] = length
         return res
+
 # @lc code=end

@@ -13,37 +13,34 @@
 
 class Solution:
     def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        p1 = head
+        p2 = head
         pre = None
-        next = None
-        node = head
+        _next = head.next
         for _ in range(left - 1):
-            pre = node
-            node = node.next
-        for _ in range(right - left):
-            node = node.next
-        next = node.next
-        node.next = None
+            pre = p1
+            p1 = p1.next
+        for _ in range(right - 1):
+            p2 = p2.next
+            _next = p2.next
+        p2.next = None
+        n_head = self.reverse(p1, pre)
         if pre:
-            node = pre.next
-            pre.next = None
-            start, end = self.reverse(node)
-            pre.next = start
+            pre.next = n_head
+            p1.next = _next
+            return head
         else:
-            start, end = self.reverse(head)
-            head = start
-        end.next = next
-        return head
+            p1.next = _next
+            return p2
 
-    def reverse(self, head):
-        pre = None
-        next = None
+    def reverse(self, head, pre=None):
         node = head
         while node:
-            next = node.next
+            _next = node.next
             node.next = pre
             pre = node
-            node = next
-        return pre, head
+            node = _next
+        return pre
 
 
 # @lc code=end

@@ -8,11 +8,11 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         m = {}
-        for i in range(len(nums)):
-            if m.get(nums[i]) == None:
-                m[target - nums[i]] = i
+        for i, num in enumerate(nums):
+            if m.get(num) != None:
+                return [m[num], i]
             else:
-                return [m[nums[i]], i]
+                m[target - num] = i
         return [-1, -1]
 
 # @lc code=end
