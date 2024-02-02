@@ -1,7 +1,7 @@
 #
-# @lc app=leetcode.cn id=102 lang=python3
+# @lc app=leetcode.cn id=637 lang=python3
 #
-# [102] 二叉树的层序遍历
+# [637] 二叉树的层平均值
 #
 
 # @lc code=start
@@ -11,27 +11,20 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-import queue
-
-
 class Solution:
-    def levelOrder(self, root: TreeNode) -> List[List[int]]:
-        if not root:
-            return []
+    def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
         queue = [root]
         res = []
         while queue:
+            total = 0
             size = len(queue)
-            temp = []
             for _ in range(size):
                 node = queue.pop(0)
-                temp.append(node.val)
+                total += node.val
                 if node.left:
                     queue.append(node.left)
                 if node.right:
                     queue.append(node.right)
-            res.append(temp)
+            res.append(total / size)
         return res
-
-
 # @lc code=end

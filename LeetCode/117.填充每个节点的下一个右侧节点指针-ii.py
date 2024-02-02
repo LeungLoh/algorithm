@@ -17,13 +17,33 @@ class Node:
 
 
 class Solution:
+    # def connect(self, root: 'Node') -> 'Node':
+    #     if not root:
+    #         return
+    #     queue = [root]
+    #     levels = []
+    #     while queue:
+    #         size = len(queue)
+    #         level = []
+    #         for _ in range(size):
+    #             node = queue.pop(0)
+    #             if node.left:
+    #                 queue.append(node.left)
+    #             if node.right:
+    #                 queue.append(node.right)
+    #             level.append(node)
+    #         levels.append(level)
+    #     for level in levels:
+    #         for i in range(len(level) - 1):
+    #             level[i].next = level[i + 1]
+    #     return root
     def connect(self, root: 'Node') -> 'Node':
         if not root:
             return root
-        self.dfs([root])
+        self.bfs([root])
         return root
 
-    def dfs(self, queue):
+    def bfs(self, queue):
         if not queue:
             return
         root = queue.pop(0)
@@ -40,7 +60,6 @@ class Solution:
                     root.left.next = node.left
                 elif node and node.right:
                     root.left.next = node.right
-
         if root.right:
             queue.append(root.right)
             node = root.next
@@ -50,7 +69,7 @@ class Solution:
                 root.right.next = node.left
             elif node and node.right:
                 root.right.next = node.right
+        self.bfs(queue)
 
-        self.dfs(queue)
 
 # @lc code=end

@@ -10,19 +10,16 @@ class Solution:
         self.res = set()
 
     def generateParenthesis(self, n: int) -> List[str]:
-        if n == 0:
-            return []
         self.dfs(n, 0, "")
         return list(self.res)
 
     def dfs(self, left, right, path):
         if left == 0:
-            path += ')' * right
+            path += ")" * right
             self.res.add(path)
             return
-        for _ in range(right):
-            self.dfs(left, right - 1, path + ')')
-        self.dfs(left - 1, right + 1, path + '(')
-
+        if right:
+            self.dfs(left, right - 1, path + ")")
+        self.dfs(left - 1, right + 1, path + "(")
 
 # @lc code=end

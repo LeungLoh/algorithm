@@ -26,35 +26,37 @@ class LRUCache:
         self.buffer = {}
 
     def get(self, key: int) -> int:
-        if key in self.buffer:
-            node = self.buffer[key]
+        node = self.buffer.get(key)
+        if node:
             self.remove(node)
             self.add(node)
             return node.val
-        else:
-            return -1
+        return -1
 
     def put(self, key: int, value: int) -> None:
-        if key in self.buffer:
-            self.remove(self.buffer[key])
+        node = self.buffer.get(key)
+        if node:
+            self.remove(node)
         elif len(self.buffer) == self.cap:
+            del self.buffer[self.head.next.key]
             self.remove(self.head.next)
-            del self.buffer[self.head.next]
 
-        self.add(Node(key, value))
-        self.buffer[key] = Node(key, value)
+        node = Node(key, value)
+        self.add(node)
+        self.buffer[key] = node
 
     def add(self, node):
         pre = self.tail.prev
-        node.prev = pre
         pre.next = node
+        node.prev = pre
         node.next = self.tail
         self.tail.prev = node
 
     def remove(self, node):
-        node.next.pre = node.pre
-        node.pre.next = node.next
-
+        node.next.prev = node.prev
+        node.prev.next = node.next
+        node.prev = None
+        node.next = None
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)

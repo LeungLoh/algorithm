@@ -1,7 +1,7 @@
 #
-# @lc app=leetcode.cn id=226 lang=python3
+# @lc app=leetcode.cn id=530 lang=python3
 #
-# [226] 翻转二叉树
+# [530] 二叉搜索树的最小绝对差
 #
 
 # @lc code=start
@@ -12,18 +12,21 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    def __init__(self) -> None:
+        self.res = sys.maxsize
+        self.pre = -1
+
+    def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
         self.dfs(root)
-        return root
+        return self.res
 
     def dfs(self, root):
         if not root:
             return
-        left = root.left
-        right = root.right
-        root.left = right
-        root.right = left
         self.dfs(root.left)
+        if self.pre != -1:
+            self.res = min(self.res, root.val - self.pre)
+        self.pre = root.val
         self.dfs(root.right)
 
 

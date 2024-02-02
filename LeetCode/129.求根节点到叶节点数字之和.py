@@ -14,20 +14,20 @@
 
 
 class Solution:
-    def __init__(self) -> None:
-        self.res = 0
-
     def sumNumbers(self, root: TreeNode) -> int:
-        self.dfs(root, 0)
-        return self.res
-
-    def dfs(self, root, v):
         if not root:
-            return
+            return 0
+        return self.dfs(root, 0)
+
+    def dfs(self, root, total):
         if not root.left and not root.right:
-            self.res += v * 10 + root.val
-            return
-        self.dfs(root.left, v * 10 + root.val)
-        self.dfs(root.right, v * 10 + root.val)
+            return total + root.val
+        res = 0
+        if root.left:
+            res += self.dfs(root.left, (total + root.val) * 10)
+        if root.right:
+            res += self.dfs(root.right, (total + root.val) * 10)
+        return res
+
 
 # @lc code=end

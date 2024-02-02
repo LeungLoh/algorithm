@@ -1,7 +1,7 @@
 #
-# @lc app=leetcode.cn id=102 lang=python3
+# @lc app=leetcode.cn id=222 lang=python3
 #
-# [102] 二叉树的层序遍历
+# [222] 完全二叉树的节点个数
 #
 
 # @lc code=start
@@ -11,27 +11,25 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-import queue
-
-
 class Solution:
-    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+    def countNodes(self, root: Optional[TreeNode]) -> int:
         if not root:
-            return []
+            return 0
+        total = 0
         queue = [root]
-        res = []
         while queue:
             size = len(queue)
-            temp = []
+            total += size
+            if not queue[0].left and not queue[0].right:
+                break
+
             for _ in range(size):
                 node = queue.pop(0)
-                temp.append(node.val)
                 if node.left:
                     queue.append(node.left)
                 if node.right:
                     queue.append(node.right)
-            res.append(temp)
-        return res
+        return total
 
 
 # @lc code=end

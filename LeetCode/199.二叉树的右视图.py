@@ -14,25 +14,19 @@
 
 
 class Solution:
-    def __init__(self) -> None:
-        self.res = []
-
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
-        self.bfs([root])
-        return self.res
-
-    def bfs(self, queue):
-        if not queue:
-            return
-        self.res.append(queue[-1].val)
-        size = len(queue)
-        for _ in range(size):
-            node = queue.pop(0)
-            if node.left:
-                queue.append(node.left)
-            if node.right:
-                queue.append(node.right)
-        self.bfs(queue)
+        queue = [root]
+        res = []
+        while queue:
+            size = len(queue)
+            res.append(queue[-1].val)
+            for _ in range(size):
+                node = queue.pop(0)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+        return res
 # @lc code=end

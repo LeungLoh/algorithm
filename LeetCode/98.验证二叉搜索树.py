@@ -15,10 +15,12 @@ class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         return self.dfs(root, -sys.maxsize, sys.maxsize)
 
-    def dfs(self, root, min_val, max_val):
+    def dfs(self, root, left, right):
         if not root:
             return True
-        if root.val <= min_val or root.val >= max_val:
+        if root.val <= left or root.val >= right:
             return False
-        return self.dfs(root.left, min_val, root.val) and self.dfs(root.right, root.val, max_val)
+        return self.dfs(root.left, left, root.val) and self.dfs(root.right, root.val, right)
+
+
 # @lc code=end

@@ -21,14 +21,18 @@ class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         if not root:
             return True
-        return self.check(root.left, root.right)
+        return self.dfs(root.left, root.right)
 
-    def check(self, node1, node2):
-        if not node1 and not node2:
+    def dfs(self, left, right):
+        if not left and not right:
             return True
-        if not node1 or not node2 or node1.val != node2.val:
+        if not left:
             return False
-        return self.check(node1.left, node2.right) and self.check(node1.right, node2.left)
+        if not right:
+            return False
+        if left.val != right.val:
+            return False
+        return self.dfs(left.left, right.right) and self.dfs(left.right, right.left)
 
 
 # @lc code=end

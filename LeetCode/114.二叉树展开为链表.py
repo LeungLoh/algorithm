@@ -17,26 +17,23 @@ class Solution:
         Do not return anything, modify root in-place instead.
         """
         if not root:
-            return
-        s = []
-        node = root
-        while node:
-            left = node.left
-            right = node.right
-            if right:
-                s.append(right)
-            node.left = None
-            node.right = None
-            if left:
-                node.right = left
-                node = left
-            else:
-                if s:
-                    temp = s.pop()
-                    node.right = temp
-                    node = temp
-                else:
-                    node = None
+            return root
+        self.dfs(root)
 
+    def dfs(self, root):
+        start, end = root, root
+        left = root.left
+        right = root.right
+        if left:
+            lstart, lend = self.dfs(left)
+            end.left = None
+            end.right = lstart
+            end = lend
+        if right:
+            rstart, rend = self.dfs(right)
+            end.left = None
+            end.right = rstart
+            end = rend
+        return start, end
 
 # @lc code=end

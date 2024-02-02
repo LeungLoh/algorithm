@@ -7,7 +7,7 @@
 # @lc code=start
 class Solution:
     def __init__(self) -> None:
-        self.nums = {
+        self.m = {
             "2": "abc",
             "3": "def",
             "4": "ghi",
@@ -21,15 +21,15 @@ class Solution:
 
     def letterCombinations(self, digits: str) -> List[str]:
         if not digits:
-            return []
-        self.dfs(list(digits), "")
+            return self.res
+        self.dfs(digits, "")
         return self.res
 
     def dfs(self, digits, path):
         if not digits:
             self.res.append(path)
             return
-        for c in self.nums[digits[0]]:
+        for c in self.m[digits[0]]:
             self.dfs(digits[1:], path + c)
 
 # @lc code=end

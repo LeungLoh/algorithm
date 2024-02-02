@@ -16,7 +16,8 @@ class Solution:
     def dfs(self, nums, path):
         if not nums:
             self.res.append(path)
-        for i in range(len(nums)):
-            self.dfs(nums[:i]+nums[i+1:],path+[nums[i]]) 
+            return
+        for i, v in enumerate(nums):
+            self.dfs(nums[:i] + nums[i + 1:], path + [v])
 
 # @lc code=end

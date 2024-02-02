@@ -13,16 +13,18 @@
 #         self.right = right
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-        return self.dfs(root,targetSum,0)
-
-    def dfs(self,root,targetSum,total):
         if not root:
             return False
+        return self.dfs(root, 0, targetSum)
+
+    def dfs(self, root, total, targetSum):
         if not root.left and not root.right:
-            if total+root.val==targetSum:
+            return True if total + root.val == targetSum else False
+        if root.left:
+            if self.dfs(root.left, total + root.val, targetSum):
                 return True
-            return False
-        return self.dfs(root.left,targetSum,total+root.val) or self.dfs(root.right,targetSum,total+root.val)
-
+        if root.right:
+            if self.dfs(root.right, total + root.val, targetSum):
+                return True
+        return False
 # @lc code=end
-

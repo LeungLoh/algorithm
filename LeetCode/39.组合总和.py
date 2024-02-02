@@ -10,17 +10,17 @@ class Solution:
         self.res = []
 
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        self.dfs(candidates, [], 0, target)
+        self.dfs(candidates, target, [])
         return self.res
 
-    def dfs(self, candidates, path, sums, target):
-        if sums > target:
-            return
-        if sums == target:
+    def dfs(self, candidates, target, path):
+        if target == 0:
             self.res.append(path)
             return
-        for i in range(len(candidates)):
-            self.dfs(candidates[i:], path + [candidates[i]], sums + candidates[i], target)
+        if target < 0:
+            return
+        for i, v in enumerate(candidates):
+            self.dfs(candidates[i:], target - v, path + [v])
 
 
 # @lc code=end
