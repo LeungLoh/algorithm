@@ -7,24 +7,26 @@
 # @lc code=start
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        l = 0
-        r = len(nums) - 1
-        while l <= r:
-            mid = l + (r - l) // 2
-            if nums[mid] == target:
+        if not nums:
+            return [-1, -1]
+        left = 0
+        right = len(nums) - 1
+        while left <= right:
+            mid = left + (right - left) // 2
+            if target == nums[mid]:
                 break
             if nums[mid] > target:
-                r = mid - 1
-            elif nums[mid] < target:
-                l = mid + 1
-        if l > r:
-            return [-1, -1]
-        p1 = mid
-        p2 = mid
-        while p1 > 0 and nums[p1 - 1] == target:
-            p1 -= 1
-        while p2 < len(nums) - 1 and nums[p2 + 1] == target:
-            p2 += 1
-        return [p1, p2]
+                right -= 1
+            else:
+                left += 1
+        if target == nums[mid]:
+            left = mid
+            right = mid
+            while left > 0 and nums[left - 1] == target:
+                left -= 1
+            while right < len(nums) - 1 and nums[right + 1] == target:
+                right += 1
+            return [left, right]
+        return [-1, -1]
 
 # @lc code=end

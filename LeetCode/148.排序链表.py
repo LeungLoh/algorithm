@@ -17,52 +17,48 @@ class Solution:
         length = 0
         node = head
         while node:
-            node = node.next
             length += 1
-        return self.sort(head, length)
-
-    def sort(self, head, length):
+            node = node.next
         if length == 1:
             return head
         if length == 2:
-            if head.val > head.next.val:
-                node = head.next
-                node.next = head
-                head.next = None
-                return node
+            node1 = head
+            node2 = head.next
+            if node1.val > node2.val:
+                node2.next = node1
+                node1.next = None
+                return node2
             else:
-                return head
-        mid = length // 2
-        node1 = head
-        node2 = head
-        pre = None
-        for _ in range(mid):
-            pre = node2
-            node2 = node2.next
-        pre.next = None
-        nnode1 = self.sort(node1, mid)
-        nnode2 = self.sort(node2, length - mid)
-        return self.merge(nnode1, nnode2)
+                return node1
 
-    def merge(self, head1, head2):
-        node1 = head1
-        node2 = head2
-        nhead = ListNode(0)
-        node = nhead
-        while node1 and node2:
-            if node1.val < node2.val:
-                node.next = node1
-                node1 = node1.next
+        mid = length // 2
+        mid_node = head
+        for _ in range(mid - 1):
+            mid_node = mid_node.next
+        _next = mid_node.next
+        mid_node.next = None
+        left = self.sortList(head)
+        right = self.sortList(_next)
+        return self.merge(left, right)
+
+    def merge(self, left, right):
+        node_l = left
+        node_r = right
+        head = ListNode(0)
+        node = head
+        while node_l and node_r:
+            if node_l.val < node_r.val:
+                node.next = node_l
+                node_l = node_l.next
             else:
-                node.next = node2
-                node2 = node2.next
+                node.next = node_r
+                node_r = node_r.next
             node = node.next
-            node.next = None
-        if node1:
-            node.next = node1
-        if node2:
-            node.next = node2
-        return nhead.next
+        if node_l:
+            node.next = node_l
+        if node_r:
+            node.next = node_r
+        return head.next
 
 
 # @lc code=end

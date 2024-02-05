@@ -3,8 +3,10 @@
 #
 # [215] 数组中的第K个最大元素
 #
-
+from typing import *
 # @lc code=start
+
+
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         if not k or not nums:
@@ -40,5 +42,9 @@ class Solution:
                 nums[left], nums[right] = nums[right], nums[left]
         nums[l], nums[left] = nums[left], nums[l]
         return left
+
+
+# test = Solution()
+# print(test.findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 9))
 
 # @lc code=end

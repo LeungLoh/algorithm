@@ -11,22 +11,22 @@ class Solution:
             return False
         stack = []
         length = 0
-        n = x
-        while n:
-            n //= 10
+        num = x
+        while num:
+            num //= 10
             length += 1
-        for _ in range(length // 2):
-            stack.append(x % 10)
-            x //= 10
+        num = x
 
+        for _ in range(length // 2):
+            stack.append(num % 10)
+            num //= 10
         if length % 2 != 0:
-            x //= 10
-
-        for _ in range(length // 2):
-            if stack.pop(-1) != x % 10:
+            num //= 10
+        while num:
+            if stack.pop() != num % 10:
                 return False
-            x //= 10
-        return len(stack) == 0
+            num //= 10
+        return True
 
 
 # @lc code=end
