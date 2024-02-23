@@ -13,7 +13,7 @@
 #         self.right = right
 class Solution:
     def __init__(self) -> None:
-        self.res = -sys.maxsize - 1
+        self.res = -sys.maxsize
 
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         self.dfs(root)

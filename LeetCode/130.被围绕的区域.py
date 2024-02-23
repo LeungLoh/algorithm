@@ -18,22 +18,20 @@ class Solution:
         for j in range(m):
             self.dfs(board, 0, j, n, m)
             self.dfs(board, n - 1, j, n, m)
-
+        for i in range(1, n - 1):
+            for j in range(1, m - 1):
+                self.dfs(board, i, j, n, m, flag="X")
         for i in range(n):
             for j in range(m):
-                self.dfs(board, i, j, n, m, flag='X')
+                if board[i][j] == "-":
+                    board[i][j] = "O"
 
-        for i in range(n):
-            for j in range(m):
-                if board[i][j] == '-':
-                    board[i][j] = 'O'
-
-    def dfs(self, board, i, j, n, m, flag='-'):
+    def dfs(self, board, i, j, n, m, flag="-"):
         if i < 0 or i >= n or j < 0 or j >= m or board[i][j] != 'O':
             return
         board[i][j] = flag
-        self.dfs(board, i + 1, j, n, m, flag)
         self.dfs(board, i - 1, j, n, m, flag)
+        self.dfs(board, i + 1, j, n, m, flag)
         self.dfs(board, i, j - 1, n, m, flag)
         self.dfs(board, i, j + 1, n, m, flag)
 

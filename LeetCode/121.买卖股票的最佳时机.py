@@ -11,7 +11,7 @@ class Solution:
         dp[-1] = prices[-1]
         res = 0
         for i in range(len(prices) - 2, -1, -1):
-            dp[i] = max(dp[i + 1], prices[i])
-            res = max(dp[i] - prices[i], res)
+            dp[i] = max(prices[i], dp[i + 1])
+            res = max(res, dp[i] - prices[i])
         return res
 # @lc code=end

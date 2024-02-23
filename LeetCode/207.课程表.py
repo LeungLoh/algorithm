@@ -5,30 +5,31 @@
 #
 
 # @lc code=start
+from collections import *
+
+from typing import *
 
 
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        m = {}
-        degrees = [0] * numCourses
-        count = 0
+        graph = defaultdict(list)
+        courses = [0] * numCourses
         for v in prerequisites:
-            degrees[v[0]] += 1
-            if v[1] not in m.keys():
-                m[v[1]] = [v[0]]
-            else:
-                m[v[1]].append(v[0])
-        queue = [index for index in range(len(degrees)) if  degrees[index]== 0]
+            graph[v[1]].append(v[0])
+            courses[v[0]] += 1
+        queue = [i for i in range(len(courses)) if courses[i] == 0]
         while queue:
-            cur = queue.pop(0)
-            count += 1
-            nextcourse = m.get(cur, [])
-            if len(nextcourse) > 0:
-                for item in nextcourse:
-                    degrees[item] -= 1
-                    if degrees[item] == 0:
-                        queue.append(item)
-        return count == numCourses
+            _class = queue.pop(0)
+            for item in graph[_class]:
+                courses[item] -= 1
+                if courses[item] == 0:
+                    queue.append(item)
+            numCourses -= 1
+            if numCourses == 0:
+                return True
+        return False
 
 
+test = Solution()
+print(test.canFinish(3, [[1, 0], [1, 2], [0, 1]]))
 # @lc code=end
